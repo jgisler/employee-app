@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.gislers</groupId>
+    <artifactId>employee-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>employee-database</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <name>employee-app</name>
+    <description>Java App for Employee DB</description>
+
+    <scm>
+        <connection>scm:git:git@github.com:jgisler/employee-app.git</connection>
+        <developerConnection>scm:git:git@github.com:jgisler/employee-app.git</developerConnection>
+        <url>https://github.com/jgisler/employee-app.git</url>
+    </scm>
+
+    <properties>
+        <java.version>1.8</java.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!--Spring-->
+        <springframework.version>4.2.0.RELEASE</springframework.version>
+
+        <!--Hibernate / JPA-->
+        <hibernate.version>5.0.0.Final</hibernate.version>
+
+        <!-- Logging -->
+        <logback.version>1.0.13</logback.version>
+        <slf4j.version>1.7.5</slf4j.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+
+    </dependencyManagement>
+
+
+</project>
