@@ -12,7 +12,13 @@
     </parent>
 
     <artifactId>employee-database</artifactId>
+    <name>employee-database</name>
     <description>Database set up</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <sql.directory>${project.basedir}/src/main/resources/sql</sql.directory>
+    </properties>
 
     <build>
         <plugins>
@@ -27,6 +33,65 @@
                         <version>5.1.36</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                    <url>jdbc:mysql://localhost:3306</url>
+                    <username>root</username>
+                    <password>admin</password>
+                </configuration>
+                <executions>
+
+                    <execution>
+                        <id>load-schema</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>${sql.directory}/employees_partitioned.sql</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>create-app-users</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>${sql.directory}/permissions.sql</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>load-data</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <orderFile>descending</orderFile>
+                            <srcFiles>
+                                <srcFile>${sql.directory}/load_departments.dump</srcFile>
+                                <srcFile>${sql.directory}/load_employees.dump</srcFile>
+                                <srcFile>${sql.directory}/load_dept_emp.dump</srcFile>
+                                <srcFile>${sql.directory}/load_dept_manager.dump</srcFile>
+                                <srcFile>${sql.directory}/load_titles.dump</srcFile>
+                                <srcFile>${sql.directory}/load_salaries1.dump</srcFile>
+                                <srcFile>${sql.directory}/load_salaries2.dump</srcFile>
+                                <srcFile>${sql.directory}/load_salaries3.dump</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+
+                </executions>
             </plugin>
         </plugins>
     </build>
